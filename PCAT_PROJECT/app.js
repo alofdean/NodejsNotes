@@ -28,7 +28,8 @@ const myLogger2 = (req, res, next) => {
 */
 
 app.use(express.static('public')); //Middleware
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 /*
 app.use(myLogger);
 app.use(myLogger2);
@@ -56,7 +57,13 @@ app.get('/about', (req, res) => {
 app.get('/add', (req, res) => {
   res.render('add');
 });
-const port = 7236;
+
+app.post('/photos', (req, res) => {
+  console.log(req.body);
+  res.redirect('/');
+});
+
+const port = 6300;
 
 app.listen(port, () => {
   console.log(`Sunucu ${port}'da baslatildi!`);
